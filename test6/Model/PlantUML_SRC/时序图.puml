@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor 用户 as user
+participant 登录系统 as resource
+participant 车况查询系统 as condition
+participant 车票查询系统 as ticket
+participant 订单 as order1
+actor 管理员 as admin
+
+activate resource
+admin -> resource:修改用户信息
+
+user -> resource: 登录
+activate user
+
+activate condition
+user -> condition:查询车况信息
+admin -> condition:修改车况信息
+destroy condition
+
+user -> ticket:查询车票信息
+admin -> ticket:修改车票信息
+activate ticket
+destroy ticket
+
+activate order1
+user -> order1:查询订单信息
+user -> order1:取消订单
+admin -> order1:修改订单
+
+resource -> user: 退出登录
+
+footer 201810414412 黄海峰
+@enduml

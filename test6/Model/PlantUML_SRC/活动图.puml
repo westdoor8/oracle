@@ -1,0 +1,27 @@
+@startuml
+|用户|
+start
+:登录;
+|登录系统|
+if (输入账号密码) then (正确)
+    :登陆成功;
+else (错误)
+endif
+|车次系统|
+if (查看车次) then (未查询到此车次)
+    stop
+else (是)
+    :查看剩余;
+    fork
+        :下单;
+    end fork
+:填写信息;
+|订单系统|
+:生成订单;
+:出票;
+|用户|
+:查看订单;
+stop
+
+footer 201810414412 黄海峰
+@enduml
